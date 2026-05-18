@@ -1,53 +1,5 @@
 namespace OpenKh.Kh2;
 
-public enum World
-{
-    WorldZz,
-    EndOfSea,
-    TwilightTown,
-    DestinyIsland,
-    HollowBastion,
-    BeastCastle,
-    TheUnderworld,
-    Agrabah,
-    LandOfDragons,
-    HundredAcreWood,
-    PrideLands,
-    Atlantica,
-    DisneyCastle,
-    TimelessRiver,
-    HalloweenTown,
-    WorldMap,
-    PortRoyal,
-    SpaceParanoids,
-    WorldThatNeverWas
-}
-
-public enum JiminyWorld
-{
-    TwilightTown,
-    HollowBastion,
-    BeastCastle,
-    OlympusColiseum,
-    Agrabah,
-    LandOfDragons,
-    HundredAcreWood,
-    PrideLands,
-    Atlantica,
-    DisneyCastle,
-    TimelessRiver,
-    HalloweenTown,
-    PortRoyal,
-    SpaceParanoids,
-    WorldThatNeverWas,
-    Collection,
-
-    //used in the character section
-    Other = 0x10,
-    Heartless = 0x11,
-    Nobody = 0x12,
-}
-
 public static class Constants
 {
     public const int FontEuropeanSystemWidth = 18;
@@ -67,20 +19,6 @@ public static class Constants
     public const int WorldCount = (int)World.WorldThatNeverWas + 1;
     public const int MaxAreaPerWorldCount = 64;
     public const int JiminyWorldCount = (int)JiminyWorld.Nobody + 1;
-
-    public enum RegionId
-    {
-        Undefined,
-        Japanese,
-        UnitedStates,
-        UnitedKingdom,
-        Italian,
-        Spanish,
-        German,
-        French,
-        FinalMix,
-        MAX
-    }
 
     public static readonly string[] WorldIds = new string[WorldCount]
     {
@@ -122,3 +60,4 @@ public static class Constants
             "World That Never Was"
     };
 }
+
