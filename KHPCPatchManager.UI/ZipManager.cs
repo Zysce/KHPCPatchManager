@@ -8,7 +8,7 @@ namespace OpenKh.Egs;
 
 public class ZipManager
 {
-    public static List<ZipFile> ZipFiles => KHPCPatchManager.ZipFiles;
+    public static List<ZipFile> ZipFiles => global::Program.ZipFiles;
 
     private static bool ZipDirectoryExists(string dir) => ZipFiles.Find(x => x.SelectEntries(Path.Combine(dir, "*")).Count > 0) != null;
 

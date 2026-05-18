@@ -8,7 +8,7 @@ using System.ComponentModel;
 using Gtk;
 using WebKit;
 
-public class KHPCPatchManager
+public class Program
 {
     private static readonly Assembly ExecutingAssembly = Assembly.GetExecutingAssembly();
     private static bool _guiDisplayed = false;
@@ -81,7 +81,7 @@ public class KHPCPatchManager
     private static void Main(string[] args)
     {
         //var fvi = FileVersionInfo.GetVersionInfo(ExecutingAssembly.Location);
-        _version = "v" + typeof(KHPCPatchManager).Assembly.GetName().Version;
+        _version = "v" + typeof(Program).Assembly.GetName().Version;
 
         if (!Directory.Exists(ResourcesDirectory)) UpdateResources(ResourcesDirectory);
 
