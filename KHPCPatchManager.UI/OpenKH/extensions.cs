@@ -5,7 +5,8 @@ using System.Text;
 using System.Linq;
 using Xe.BinaryMapper;
 
-public static class Extensions{
+public static class Extensions
+{
 	private static readonly InvalidDataException ReadSeekException = new InvalidDataException($"Stream must be readable and seekable.");
 	private static readonly InvalidDataException WriteSeekException = new InvalidDataException($"Stream must be writable and seekable.");
 	private static readonly Func<long, InvalidDataException> InvalidHeaderLengthException = (minHeaderLength) =>
@@ -40,9 +41,11 @@ public static class Extensions{
 		return stream;
 	}
 
-	public static T AlignPosition<T>(this T stream, int alignValue) where T : Stream {
+	public static T AlignPosition<T>(this T stream, int alignValue) where T : Stream
+	{
 		long newAlign = Align(stream.Position, alignValue);
-		if(newAlign<0){
+		if (newAlign < 0)
+		{
 			Console.WriteLine("Align ERROR:");
 			Console.WriteLine($" currentPos: {stream.Position}");
 			Console.WriteLine($" alignValue: {alignValue}");
@@ -174,14 +177,17 @@ public static class Extensions{
 			length -= read;
 		}
 	}
-	
-	public static long Align(long offset, int alignment){
+
+	public static long Align(long offset, int alignment)
+	{
 		var misalignment = offset % alignment;
 		return misalignment > 0 ? offset + alignment - misalignment : offset;
 	}
-	
-	public static byte[] GetHashData(byte[] b){
-		using(System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create()){
+
+	public static byte[] GetHashData(byte[] b)
+	{
+		using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
+		{
 			byte[] hashBytes = md5.ComputeHash(b);
 			return hashBytes;
 		}

@@ -1,11 +1,5 @@
-public class ListBoxItem
+public class ListBoxItem(string a, string b)
 {
-    public string ShortName { get; set; }
-    public string Path { get; set; }
-	
-    public ListBoxItem(string a, string b)
-    {
-        ShortName = a;
-        Path = b;
-    }
+    public string ShortName { get; set; } = a;
+    public string Path { get; set; } = b;
 }

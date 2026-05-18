@@ -14,13 +14,12 @@ using System.Security.Cryptography;
 using System.Text;
 using Xe.BinaryMapper;
 
-namespace OpenKh.Command.IdxImg
-{
-    partial class Program
-    {
-        public class EpicGamesAssets
-        {
+namespace OpenKh.Command.IdxImg;
 
-        }
+partial class Program
+{
+    public class EpicGamesAssets
+    {
+
     }
 }

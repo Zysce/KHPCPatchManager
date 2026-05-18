@@ -25,12 +25,12 @@ public class ZipManager
             var foundFiles = new List<string>();
             //thanks rider
             foreach (var filename in from x in ZipFiles
-                     select x.SelectEntries(Path.Combine(folder, "*"))
+                                     select x.SelectEntries(Path.Combine(folder, "*"))
                      into entries
-                     from entry in entries
-                     let filename = entry.FileName.Replace(folder.Replace(@"\", "/") + "/", "")
-                     where !entry.IsDirectory && !foundFiles.Contains(filename)
-                     select filename) 
+                                     from entry in entries
+                                     let filename = entry.FileName.Replace(folder.Replace(@"\", "/") + "/", "")
+                                     where !entry.IsDirectory && !foundFiles.Contains(filename)
+                                     select filename)
                 foundFiles.Add(filename);
             return foundFiles;
         }
@@ -40,7 +40,7 @@ public class ZipManager
                     .Replace(@"\", "/"));
         return Enumerable.Empty<string>();
     }
-		
+
     public static byte[] FileReadAllBytes(string file)
     {
         if (ZipFileExists(file))
@@ -51,7 +51,7 @@ public class ZipManager
                 entry = entries.FirstOrDefault();
 
                 using var stream = entry.OpenReader();
-                
+
                 var bytes = new byte[entry.UncompressedSize];
                 stream.Read(bytes, 0, (int)entry.UncompressedSize);
                 return bytes;
@@ -60,7 +60,7 @@ public class ZipManager
         else if (File.Exists(file)) return File.ReadAllBytes(file);
         return Array.Empty<byte>();
     }
-		
+
     public static string[] FileReadAllLines(string file)
     {
         if (!ZipFileExists(file)) return File.Exists(file) ? File.ReadAllLines(file) : Array.Empty<string>();
@@ -71,7 +71,7 @@ public class ZipManager
             StringSplitOptions.None
         );
     }
-		
+
     public static Stream FileReadStream(string file)
     {
         if (ZipFileExists(file))

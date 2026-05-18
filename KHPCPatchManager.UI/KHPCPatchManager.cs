@@ -83,9 +83,14 @@ public class KHPCPatchManager
         //var fvi = FileVersionInfo.GetVersionInfo(ExecutingAssembly.Location);
         _version = "v" + typeof(KHPCPatchManager).Assembly.GetName().Version;
 
-        if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "/resources")) UpdateResources();
+        if (!Directory.Exists(ResourcesDirectory)) UpdateResources(ResourcesDirectory);
 
-        if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "/resources/custom_filenames.txt")) File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "/resources/custom_filenames.txt", "");
+        var customFilenamesPath = Path.Combine(ResourcesDirectory, "custom_filenames.txt");
+        if (!File.Exists(customFilenamesPath))
+        {
+            Directory.CreateDirectory(ResourcesDirectory);
+            File.AppendAllText(customFilenamesPath, "");
+        }
 
         Console.WriteLine($"KHPCPatchManager {_version}");
 
@@ -215,18 +220,19 @@ public class KHPCPatchManager
         if (!_guiDisplayed) Console.ReadLine();
     }
 
-    private static void UpdateResources()
+    private static void UpdateResources(string resourcesDirectory)
     {
         var resourceName = ExecutingAssembly.GetManifestResourceNames().Single(str => str.EndsWith("resources.zip"));
         using var stream = ExecutingAssembly.GetManifestResourceStream(resourceName);
         var zip = ZipFile.Read(stream);
-        Directory.CreateDirectory("resources");
-        zip.ExtractSelectedEntries("*.txt", "resources", "", ExtractExistingFileAction.OverwriteSilently);
+        Directory.CreateDirectory(resourcesDirectory);
+        zip.ExtractSelectedEntries("*.txt", resourcesDirectory, "", ExtractExistingFileAction.OverwriteSilently);
     }
 
     private static int _filesExtracted = 0;
     private static string _currentExtraction = "";
     private static int _totalFiles = 0;
+    private static string ResourcesDirectory => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "resources");
     private static void ExtractionProgress(object sender, ExtractProgressEventArgs e)
     {
         if (e.EventType != ZipProgressEventType.Extracting_BeforeExtractEntry) return;
@@ -430,7 +436,7 @@ public class KHPCPatchManager
         _applyPatchButton = new();
         _backupOption = new();
 
-        UpdateResources();
+        UpdateResources(ResourcesDirectory);
         _guiDisplayed = true;
         //var handle = GetConsoleWindow();
         var KHFolder = GetKHFolder();

@@ -1,106 +1,106 @@
-namespace OpenKh.Kh2
+namespace OpenKh.Kh2;
+
+public enum World
 {
-    public enum World
+    WorldZz,
+    EndOfSea,
+    TwilightTown,
+    DestinyIsland,
+    HollowBastion,
+    BeastCastle,
+    TheUnderworld,
+    Agrabah,
+    LandOfDragons,
+    HundredAcreWood,
+    PrideLands,
+    Atlantica,
+    DisneyCastle,
+    TimelessRiver,
+    HalloweenTown,
+    WorldMap,
+    PortRoyal,
+    SpaceParanoids,
+    WorldThatNeverWas
+}
+
+public enum JiminyWorld
+{
+    TwilightTown,
+    HollowBastion,
+    BeastCastle,
+    OlympusColiseum,
+    Agrabah,
+    LandOfDragons,
+    HundredAcreWood,
+    PrideLands,
+    Atlantica,
+    DisneyCastle,
+    TimelessRiver,
+    HalloweenTown,
+    PortRoyal,
+    SpaceParanoids,
+    WorldThatNeverWas,
+    Collection,
+
+    //used in the character section
+    Other = 0x10,
+    Heartless = 0x11,
+    Nobody = 0x12,
+}
+
+public static class Constants
+{
+    public const int FontEuropeanSystemWidth = 18;
+    public const int FontEuropeanSystemHeight = 24;
+    public const int FontEuropeanEventWidth = 24;
+    public const int FontEuropeanEventHeight = 32;
+    public const int FontJapaneseSystemWidth = 18;
+    public const int FontJapaneseSystemHeight = 18;
+    public const int FontJapaneseEventWidth = 24;
+    public const int FontJapaneseEventHeight = 24;
+    public const int FontTableSystemHeight = 256;
+    public const int FontTableEventHeight = 512;
+    public const int FontIconWidth = 24;
+    public const int FontIconHeight = 24;
+
+    public const int PaletteCount = 9;
+    public const int WorldCount = (int)World.WorldThatNeverWas + 1;
+    public const int MaxAreaPerWorldCount = 64;
+    public const int JiminyWorldCount = (int)JiminyWorld.Nobody + 1;
+
+    public enum RegionId
     {
-        WorldZz,
-        EndOfSea,
-        TwilightTown,
-        DestinyIsland,
-        HollowBastion,
-        BeastCastle,
-        TheUnderworld,
-        Agrabah,
-        LandOfDragons,
-        HundredAcreWood,
-        PrideLands,
-        Atlantica,
-        DisneyCastle,
-        TimelessRiver,
-        HalloweenTown,
-        WorldMap,
-        PortRoyal,
-        SpaceParanoids,
-        WorldThatNeverWas
+        Undefined,
+        Japanese,
+        UnitedStates,
+        UnitedKingdom,
+        Italian,
+        Spanish,
+        German,
+        French,
+        FinalMix,
+        MAX
     }
 
-    public enum JiminyWorld
+    public static readonly string[] WorldIds = new string[WorldCount]
     {
-        TwilightTown,
-        HollowBastion,
-        BeastCastle,
-        OlympusColiseum,
-        Agrabah,
-        LandOfDragons,
-        HundredAcreWood,
-        PrideLands,
-        Atlantica,
-        DisneyCastle,
-        TimelessRiver,
-        HalloweenTown,
-        PortRoyal,
-        SpaceParanoids,
-        WorldThatNeverWas,
-        Collection,
-
-        //used in the character section
-        Other = 0x10,
-        Heartless = 0x11,
-        Nobody = 0x12,
-    }
-
-    public static class Constants
-    {
-        public const int FontEuropeanSystemWidth = 18;
-        public const int FontEuropeanSystemHeight = 24;
-        public const int FontEuropeanEventWidth = 24;
-        public const int FontEuropeanEventHeight = 32;
-        public const int FontJapaneseSystemWidth = 18;
-        public const int FontJapaneseSystemHeight = 18;
-        public const int FontJapaneseEventWidth = 24;
-        public const int FontJapaneseEventHeight = 24;
-        public const int FontTableSystemHeight = 256;
-        public const int FontTableEventHeight = 512;
-        public const int FontIconWidth = 24;
-        public const int FontIconHeight = 24;
-
-        public const int PaletteCount = 9;
-        public const int WorldCount = (int)World.WorldThatNeverWas + 1;
-        public const int MaxAreaPerWorldCount = 64;
-        public const int JiminyWorldCount = (int)JiminyWorld.Nobody + 1;
-
-        public enum RegionId
-        {
-            Undefined,
-            Japanese,
-            UnitedStates,
-            UnitedKingdom,
-            Italian,
-            Spanish,
-            German,
-            French,
-            FinalMix,
-            MAX
-        }
-
-        public static readonly string[] WorldIds = new string[WorldCount]
-        {
             "zz", "es", "tt", "di", "hb", "bb", "he", "al",
             "mu", "po", "lk", "lm", "dc", "wi", "nm", "wm",
             "ca", "tr", "eh"
-        };
+    };
 
-        public static readonly string[] Regions = new string[(int)RegionId.MAX]
-        {
+    public static readonly string[] Regions = new string[(int)RegionId.MAX]
+    {
             "", "jp", "us", "uk", "it", "sp", "gr", "fr", "fm"
-        };
+    };
 
-        public static readonly string[] Languages = new string[(int)RegionId.MAX]
-        {
+    public static readonly string[] Languages = new string[(int)RegionId.MAX]
+    {
             "", "jp", "us", "us", "it", "sp", "gr", "fr", "jp"
-        };
+    };
 
-        public static readonly string[] WorldNames = new string[WorldCount]
-        {
+    public static readonly string[] WorldNames = new string[WorldCount]
+    {
             "World ZZ",
             "End of Sea",
             "Twilight Town",
@@ -120,6 +120,5 @@ namespace OpenKh.Kh2
             "Port Royal",
             "Space Paranoids",
             "World That Never Was"
-        };
-    }
+    };
 }
