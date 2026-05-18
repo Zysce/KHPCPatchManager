@@ -448,7 +448,7 @@ public class KHPCPatchManager
         f.Resize(350, 300);
         //f.MinimumSize = new System.Drawing.Size(350, 300);
 
-        var panel = new VBox();
+        var panel = new Box(Orientation.Vertical, 0);
         f.Add(panel);
         panel.Halign = Align.Fill;
         panel.Valign = Align.Fill;
@@ -646,7 +646,7 @@ public class KHPCPatchManager
         f.Resize(350, 300);
         //f.MinimumSize = new System.Drawing.Size(350, 300);
 
-        var panel = new VBox();
+        var panel = new Box(Orientation.Vertical, 0);
         f.Add(panel);
 
         var label = new Label();

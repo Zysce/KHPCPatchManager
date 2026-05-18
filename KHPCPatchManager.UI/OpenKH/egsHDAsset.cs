@@ -128,7 +128,7 @@ public class EgsHdAsset
             using var deflate = new DeflateStream(compressedStream.SetPosition(2), CompressionMode.Decompress);
 
             var decompressedData = new byte[header.DecompressedLength];
-            deflate.Read(decompressedData, 0, decompressedData.Length);
+            deflate.ReadExactly(decompressedData);
 
             data = decompressedData;
         }
@@ -157,7 +157,7 @@ public class EgsHdAsset
             using var deflate = new DeflateStream(compressedStream.SetPosition(2), CompressionMode.Decompress);
 
             var decompressedData = new byte[_header.DecompressedLength];
-            deflate.Read(decompressedData, 0, decompressedData.Length);
+            deflate.ReadExactly(decompressedData);
 
             data = decompressedData;
         }

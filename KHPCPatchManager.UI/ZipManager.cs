@@ -53,7 +53,7 @@ public class ZipManager
                 using var stream = entry.OpenReader();
 
                 var bytes = new byte[entry.UncompressedSize];
-                stream.Read(bytes, 0, (int)entry.UncompressedSize);
+                stream.ReadExactly(bytes);
                 return bytes;
             }
         }
