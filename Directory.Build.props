@@ -1,21 +1,11 @@
 <Project>
   <!-- Build configuration -->
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
-    <Optimize>true</Optimize>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
     <NoWarn>$(NoWarn);NU1903;NU1904</NoWarn>
     <RestoreNoWarn>$(RestoreNoWarn);NU1903;NU1904</RestoreNoWarn>
-  </PropertyGroup>
-
-  <!-- Runtime and single-file packaging -->
-  <PropertyGroup>
-    <SelfContained>true</SelfContained>
-    <UseAppHost>true</UseAppHost>
-    <IncludeSymbolsInSingleFile>true</IncludeSymbolsInSingleFile>
-    <IncludeAllContentsInSingleFile>true</IncludeAllContentsInSingleFile>
-    <PublishReadyToRun>true</PublishReadyToRun>
-    <PublishSingleFile>true</PublishSingleFile>
   </PropertyGroup>
 
   <!-- Package metadata -->

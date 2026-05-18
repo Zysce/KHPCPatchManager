@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>KHPCPatchManager.OpenKH</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="DotNetZip" />
+  </ItemGroup>
+</Project>

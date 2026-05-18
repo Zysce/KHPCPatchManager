@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Gtk;
 using WebKit;
-using OpenKh.Utils;
+using KHPCPatchManager.OpenKH.Utils;
 
 namespace KHPCPatchManager.UI;
 
@@ -167,19 +167,19 @@ public class Program
             if (hedFile != null && !extract_raw)
             {
                 Console.WriteLine("Extracting pkg...");
-                OpenKh.Egs.EgsTools.Extract(hedFile, hedFile + "_out");
+                KHPCPatchManager.OpenKH.Egs.EgsTools.Extract(hedFile, hedFile + "_out");
                 Console.WriteLine("Done!");
             }
             else if (hedFile != null && extract_raw)
             {
                 Console.WriteLine("Extracting raw pkg...");
-                OpenKh.Egs.EgsTools.ExtractRAW(hedFile, hedFile + "_out");
+                KHPCPatchManager.OpenKH.Egs.EgsTools.ExtractRAW(hedFile, hedFile + "_out");
                 Console.WriteLine("Done!");
             }
             else if (pkgFile != null && pkgFolder != null)
             {
                 Console.WriteLine("Patching pkg...");
-                OpenKh.Egs.EgsTools.Patch(pkgFile, pkgFolder, pkgFolder + "_out");
+                KHPCPatchManager.OpenKH.Egs.EgsTools.Patch(pkgFile, pkgFolder, pkgFolder + "_out");
                 Console.WriteLine("Done!");
             }
             else if (pkgFile == null && pkgFolder != null)
@@ -245,7 +245,6 @@ public class Program
         if (_guiDisplayed) _status.Text = "Extracting " + _currentExtraction + $": {percent}%";
     }
 
-    public static List<ZipFile> ZipFiles;
     private static void ApplyPatch(List<string> patchFile, string patchType, string KHFolder = null, bool backupPKG = true, bool extractPatch = false)
     {
         Console.WriteLine("Applying " + patchType + " patch...");
@@ -289,7 +288,7 @@ public class Program
             var epicBackup = Path.Combine(KHFolder, "backup");
             Directory.CreateDirectory(epicBackup);
 
-            ZipFiles = new List<ZipFile>();
+            KHPCPatchManager.OpenKH.Utils.ZipManager.ZipFiles = [];
             foreach (var t in patchFile)
             {
                 using var zip = ZipFile.Read(t);
@@ -301,7 +300,7 @@ public class Program
                     zip.ExtractProgress += new EventHandler<ExtractProgressEventArgs>(ExtractionProgress);
                     zip.ExtractAll(tempFolder, ExtractExistingFileAction.OverwriteSilently);
                 }
-                else ZipFiles.Insert(0, zip);
+                else KHPCPatchManager.OpenKH.Utils.ZipManager.ZipFiles.Insert(0, zip);
             }
 
             backgroundWorker1.ReportProgress(0, "Applying patch...");
@@ -318,7 +317,7 @@ public class Program
 
                 try
                 {
-                    if (((!extractPatch && OpenKh.Utils.ZipManager.DirectoryExists(KhFiles[patchType][i])) || (extractPatch && Directory.Exists(patchFolder))) && File.Exists(epicFile))
+                    if (((!extractPatch && KHPCPatchManager.OpenKH.Utils.ZipManager.DirectoryExists(KhFiles[patchType][i])) || (extractPatch && Directory.Exists(patchFolder))) && File.Exists(epicFile))
                     {
                         foundFolder = true;
                         if (File.Exists(epicPkgBackupFile)) File.Delete(epicPkgBackupFile);
@@ -327,7 +326,7 @@ public class Program
                         File.Move(epicHedFile, epicHedBackupFile);
                         backgroundWorker1.ReportProgress(0, $"Patching {KhFiles[patchType][i]}...");
                         backgroundWorker1.PKG = KhFiles[patchType][i];
-                        OpenKh.Egs.EgsTools.Patch(epicPkgBackupFile, (!extractPatch ? KhFiles[patchType][i] : patchFolder), KHFolder, backgroundWorker1);
+                        KHPCPatchManager.OpenKH.Egs.EgsTools.Patch(epicPkgBackupFile, (!extractPatch ? KhFiles[patchType][i] : patchFolder), KHFolder, backgroundWorker1);
                         if (!backupPKG)
                         {
                             if (File.Exists(epicPkgBackupFile)) File.Delete(epicPkgBackupFile);

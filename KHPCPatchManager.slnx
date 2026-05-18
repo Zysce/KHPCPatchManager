@@ -2,4 +2,5 @@
   <Folder Name="/KHPCPatchManager.UI/">
     <Project Path="KHPCPatchManager.UI/KHPCPatchManager.csproj" />
   </Folder>
+  <Project Path="KHPCPatchManager.OpenKH/KHPCPatchManager.OpenKH.csproj" />
 </Solution>

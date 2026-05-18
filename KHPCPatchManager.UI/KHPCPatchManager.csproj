@@ -1,4 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <Optimize>true</Optimize>
+	<RootNamespace>KHPCPatchManager.UI</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SelfContained>true</SelfContained>
+    <UseAppHost>true</UseAppHost>
+    <IncludeSymbolsInSingleFile>true</IncludeSymbolsInSingleFile>
+    <IncludeAllContentsInSingleFile>true</IncludeAllContentsInSingleFile>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <PublishSingleFile>true</PublishSingleFile>
+  </PropertyGroup>
 
 	<ItemGroup>
 		<EmbeddedResource Include="./resources.zip" />
@@ -8,6 +22,9 @@
 	  <PackageReference Include="DotNetZip" />
 	  <PackageReference Include="GtkSharp" />
 	  <PackageReference Include="WebkitGtkSharp" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\KHPCPatchManager.OpenKH\KHPCPatchManager.OpenKH.csproj" />
 	</ItemGroup>
 	<Target Name="Build">
 		<Csc Sources="@(Compile)" References="@(Reference)" Resources="@(EmbeddedResource)" Win32Icon="kh.ico"/>
