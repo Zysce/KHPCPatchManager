@@ -1,5 +1,7 @@
 using System;
 
+namespace OpenKh.Extensions;
+
 public static class DisposableExtensions
 {
     public static void Using<T>(this T disposable, Action<T> action)

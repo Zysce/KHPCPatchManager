@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using Ionic.Zip;
 
-namespace OpenKh.Egs;
+namespace OpenKh.Utils;
 
 public class ZipManager
 {
-    public static List<ZipFile> ZipFiles => global::Program.ZipFiles;
+    public static List<ZipFile> ZipFiles => global::KHPCPatchManager.UI.Program.ZipFiles;
 
     private static bool ZipDirectoryExists(string dir) => ZipFiles.Find(x => x.SelectEntries(Path.Combine(dir, "*")).Count > 0) != null;
 

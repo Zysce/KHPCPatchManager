@@ -1,6 +1,7 @@
 //using OpenKh.Common;
 //using OpenKh.Kh1;
 using OpenKh.Kh2;
+using OpenKh.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -64,7 +65,7 @@ public class EgsTools
         .Concat(EgsHdAsset.CustomNames)
         .Concat(new string[] { "dummy.txt" })
         .Distinct()
-        .ToDictionary(x => Helpers.ToString(Extensions.GetHashData(Encoding.UTF8.GetBytes(x))), x => x);
+        .ToDictionary(x => Helpers.ToString(OpenKh.Extensions.Extensions.GetHashData(Encoding.UTF8.GetBytes(x))), x => x);
 
     #endregion
 

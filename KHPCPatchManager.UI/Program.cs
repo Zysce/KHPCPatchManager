@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Gtk;
 using WebKit;
+using OpenKh.Utils;
+
+namespace KHPCPatchManager.UI;
 
 public class Program
 {
@@ -315,7 +318,7 @@ public class Program
 
                 try
                 {
-                    if (((!extractPatch && OpenKh.Egs.ZipManager.DirectoryExists(KhFiles[patchType][i])) || (extractPatch && Directory.Exists(patchFolder))) && File.Exists(epicFile))
+                    if (((!extractPatch && OpenKh.Utils.ZipManager.DirectoryExists(KhFiles[patchType][i])) || (extractPatch && Directory.Exists(patchFolder))) && File.Exists(epicFile))
                     {
                         foundFolder = true;
                         if (File.Exists(epicPkgBackupFile)) File.Delete(epicPkgBackupFile);

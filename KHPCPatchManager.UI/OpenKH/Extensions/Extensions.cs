@@ -5,6 +5,8 @@ using System.Text;
 using System.Linq;
 using Xe.BinaryMapper;
 
+namespace OpenKh.Extensions;
+
 public static class Extensions
 {
 	private static readonly InvalidDataException ReadSeekException = new InvalidDataException($"Stream must be readable and seekable.");
